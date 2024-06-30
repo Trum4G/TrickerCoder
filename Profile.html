@@ -138,12 +138,16 @@
                     loadingScreen.style.display = 'none';
                     container.style.display = 'block';
                     document.body.style.overflow = 'auto'; // Hiển thị thanh cuộn khi trang đã tải xong
-                    displayDateTime();
+                    startClock();
                     fetchUserIP();
                 }
             }
 
             var loadingInterval = setInterval(updateLoading, 50);
+
+            function startClock() {
+                setInterval(displayDateTime, 1000);
+            }
 
             function displayDateTime() {
                 var options = { timeZone: 'Asia/Ho_Chi_Minh', hour12: false };
