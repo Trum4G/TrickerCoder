@@ -74,6 +74,9 @@
             border-radius: 10px;
             width: 0;
         }
+        .info {
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -108,6 +111,10 @@
         <div class="links">
             <p>Kết nối với tôi qua Telegram: <a href="https://t.me/TrickerCoder" target="_blank">https://t.me/TrickerCoder</a></p>
         </div>
+        <div class="info">
+            <p id="datetime"></p>
+            <p id="user-ip"></p>
+        </div>
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -127,10 +134,31 @@
                     loadingScreen.style.display = 'none';
                     container.style.display = 'block';
                     document.body.style.overflow = 'auto'; // Hiển thị thanh cuộn khi trang đã tải xong
+                    displayDateTime();
+                    fetchUserIP();
                 }
             }
 
             var loadingInterval = setInterval(updateLoading, 50);
+
+            function displayDateTime() {
+                var options = { timeZone: 'Asia/Ho_Chi_Minh', hour12: false };
+                var now = new Date();
+                var dateString = now.toLocaleDateString('vi-VN', options);
+                var timeString = now.toLocaleTimeString('vi-VN', options);
+                document.getElementById('datetime').textContent = 'Ngày giờ hiện tại (múi giờ Việt Nam): ' + dateString + ' ' + timeString;
+            }
+
+            function fetchUserIP() {
+                fetch('https://api.ipify.org?format=json')
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('user-ip').textContent = 'Địa chỉ IP của bạn: ' + data.ip;
+                    })
+                    .catch(error => {
+                        console.error('Error fetching IP:', error);
+                    });
+            }
         });
     </script>
 </body>
