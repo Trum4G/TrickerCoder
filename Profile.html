@@ -11,7 +11,11 @@
             font-family: Arial, sans-serif;
             background-color: #0d0d0d;
             color: #00ff99;
-            overflow: hidden; /* Ẩn thanh cuộn khi loading */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            box-sizing: border-box;
         }
         .container {
             text-align: center;
@@ -20,7 +24,8 @@
             border-radius: 10px;
             width: 80%;
             max-width: 600px;
-            display: none; /* Ẩn nội dung trang chính khi loading */
+            box-sizing: border-box; /* Đảm bảo padding được tính vào kích thước tổng thể */
+            margin: 20px; /* Đảm bảo viền đều từ mọi phía */
         }
         .profile-image {
             border-radius: 50%;
