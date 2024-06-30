@@ -17,6 +17,7 @@
             align-items: center;
             height: 100vh;
             box-sizing: border-box;
+            overflow: hidden; /* Ẩn thanh cuộn khi loading */
         }
         .container {
             text-align: center;
@@ -27,6 +28,7 @@
             max-width: 600px;
             box-sizing: border-box; /* Đảm bảo padding được tính vào kích thước tổng thể */
             margin: 20px; /* Đảm bảo viền đều từ mọi phía */
+            display: none; /* Ẩn nội dung trang chính khi loading */
         }
         .profile-image {
             border-radius: 50%;
@@ -81,6 +83,37 @@
         .fa {
             margin-right: 10px;
         }
+        .city {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(to bottom, #0d0d0d 0%, #1a1a1a 100%);
+            overflow: hidden;
+            margin-top: 20px;
+        }
+        .building {
+            position: absolute;
+            bottom: 0;
+            width: 50px;
+            height: 200px;
+            background: #333;
+            border: 1px solid #00ff99;
+            box-shadow: 0 0 10px #00ff99;
+        }
+        .car {
+            position: absolute;
+            width: 50px;
+            height: 20px;
+            background: #ff00ff;
+            border: 1px solid #ff00ff;
+            box-shadow: 0 0 10px #ff00ff;
+            animation: fly 5s linear infinite;
+        }
+        @keyframes fly {
+            0% { left: -50px; bottom: 50px; }
+            50% { left: calc(100% + 50px); bottom: 100px; }
+            100% { left: -50px; bottom: 50px; }
+        }
     </style>
 </head>
 <body>
@@ -90,6 +123,14 @@
             <div class="loading-progress"></div>
         </div>
         <p id="loading-percentage">0%</p>
+        <div class="city">
+            <div class="building" style="left: 10%;"></div>
+            <div class="building" style="left: 30%; height: 150px;"></div>
+            <div class="building" style="left: 50%; height: 100px;"></div>
+            <div class="building" style="left: 70%;"></div>
+            <div class="building" style="left: 90%; height: 150px;"></div>
+            <div class="car"></div>
+        </div>
     </div>
     <div class="container">
         <img src="https://raw.githubusercontent.com/Trum4G/TrickerCoder/main/avatar.png" alt="Profile Image" class="profile-image">
