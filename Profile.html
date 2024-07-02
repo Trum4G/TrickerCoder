@@ -18,6 +18,7 @@
             height: 100vh;
             box-sizing: border-box;
             overflow: hidden; /* Ẩn thanh cuộn khi loading */
+            cursor: none; /* Ẩn con trỏ chuột */
         }
         .container {
             text-align: center;
@@ -113,6 +114,14 @@
             50% { left: calc(100% + 100px); bottom: 100px; }
             100% { left: -100px; bottom: 50px; }
         }
+        .cat-cursor {
+            position: fixed;
+            font-size: 2rem; /* Kích thước biểu tượng */
+            color: #ffcc00; /* Màu sắc biểu tượng */
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 10000; /* Đảm bảo biểu tượng con mèo luôn trên cùng */
+        }
     </style>
 </head>
 <body>
@@ -133,33 +142,34 @@
     </div>
     <div class="container">
         <img src="https://raw.githubusercontent.com/Trum4G/TrickerCoder/main/avatar.png" alt="Profile Image" class="profile-image">
-        <h1><i class="fas fa-user"></i>TrickerCoder</h1>
+        <h1><i class="fas fa-user"></i> TrickerCoder</h1>
         <div class="audio-container">
             <audio controls autoplay>
                 <source src="https://dl.dropboxusercontent.com/scl/fi/h92d3c6e6zniildhdn247/Demo-MDMA-Vol1-JangD-Mix.mp3?rlkey=q4cc5dm2kwwabimbufua4bq4z&st=he5jy29q?raw=1" type="audio/mpeg">
                 Trình duyệt của bạn không hỗ trợ thẻ audio.
             </audio>
         </div>
-        <p><i class="fas fa-code"></i>Xin chào! Tôi là TrickerCoder, một nhà phát triển phần mềm đam mê viết code và lập trình. Khi không ngồi trước máy tính, tôi thường thích chơi game để thư giãn và tìm kiếm những ý tưởng sáng tạo mới.</p>
-        <h2><i class="fas fa-tools"></i>Kỹ năng</h2>
+        <p><i class="fas fa-code"></i> Xin chào! Tôi là TrickerCoder, một nhà phát triển phần mềm đam mê viết code và lập trình. Khi không ngồi trước máy tính, tôi thường thích chơi game để thư giãn và tìm kiếm những ý tưởng sáng tạo mới.</p>
+        <h2><i class="fas fa-tools"></i> Kỹ năng</h2>
         <ul>
-            <li><i class="fas fa-laptop-code"></i>Coding</li>
-            <li><i class="fas fa-cogs"></i>Developer</li>
+            <li><i class="fas fa-laptop-code"></i> Coding</li>
+            <li><i class="fas fa-cogs"></i> Developer</li>
         </ul>
-        <h2><i class="fas fa-heart"></i>Sở thích</h2>
+        <h2><i class="fas fa-heart"></i> Sở thích</h2>
         <ul>
-            <li><i class="fas fa-code"></i>Viết code</li>
-            <li><i class="fas fa-laptop-code"></i>Lập trình</li>
-            <li><i class="fas fa-gamepad"></i>Chơi game</li>
+            <li><i class="fas fa-code"></i> Viết code</li>
+            <li><i class="fas fa-laptop-code"></i> Lập trình</li>
+            <li><i class="fas fa-gamepad"></i> Chơi game</li>
         </ul>
         <div class="links">
-            <p><i class="fab fa-telegram"></i>Kết nối với tôi qua Telegram: <a href="https://t.me/TrickerCoder" target="_blank">https://t.me/TrickerCoder</a></p>
+            <p><i class="fab fa-telegram"></i> Kết nối với tôi qua Telegram: <a href="https://t.me/TrickerCoder" target="_blank">https://t.me/TrickerCoder</a></p>
         </div>
         <div class="info">
-            <p id="datetime"><i class="fas fa-clock"></i>Đang lấy thông tin...</p>
-            <p id="user-ip"><i class="fas fa-network-wired"></i>Đang lấy thông tin...</p>
+            <p id="datetime"><i class="fas fa-clock"></i> Đang lấy thông tin...</p>
+            <p id="user-ip"><i class="fas fa-network-wired"></i> Đang lấy thông tin...</p>
         </div>
     </div>
+    <i class="fas fa-cat cat-cursor" id="catCursor"></i>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var loadingPercentage = document.getElementById('loading-percentage');
@@ -207,6 +217,13 @@
                         console.error('Error fetching IP:', error);
                     });
             }
+
+            // Di chuyển biểu tượng con mèo theo vị trí chuột
+            var catCursor = document.getElementById('catCursor');
+            document.addEventListener('mousemove', function(event) {
+                catCursor.style.left = event.clientX + 'px';
+                catCursor.style.top = event.clientY + 'px';
+            });
         });
     </script>
 </body>
